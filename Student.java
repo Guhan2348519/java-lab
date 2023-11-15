@@ -1,3 +1,17 @@
+// Step 1: Start
+
+// Step 2: Define a class called `Students`.
+//   - Declare constants for the number of students (`num_stud`), the maximum mark (`max_mark`), and the minimum mark (`min_mark`).
+//   - Declare an array to store student marks (`marks`).
+// Step 3: Create a constructor
+ // Step 4: Create a method called readMarks
+ // Step 5:Create a method called getValidMark
+// Step 6: Create a method called highestMark
+ // Step 7:Create a method called leastMark
+// Step 8: Create a method called getMode
+// Step 9:Create a method called getFreqAtMode
+// Step 10:Create a method called display
+ // Step 11:In the main method, create an instance of the Students class and call methods as needed
 import java.util.*;
 import java.io.*;
 public class Students {
