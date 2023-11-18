@@ -35,7 +35,6 @@
 // Return an error message indicating that the letter is invalid.
 //step 9. End
 
-import java.util.*;
 import java.io.*;
 import java.util.*;
 
