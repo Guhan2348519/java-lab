@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Welcome to Color Code Game</title>
+  <style>
+    body, html {
+      background: #F2EFEF;
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    h1 {
+      color: #E44D26; /* A shade of orange/red */
+    }
+
+    select {
+      padding: 2%;
+      margin: 5%;
+      cursor: pointer;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 20px;
+      background-color: #9ACD32; /* Yellow Green */
+    }
+
+    #labelLevel {
+      font-size: 20px;
+      font-weight: bold;
+      color: #36A0C8; /* A shade of blue */
+    }
+
+    .blue {
+      background-color: #4F86F7; /* A different shade of blue */
+      border-bottom: 5px solid #325E94; /* A darker shade of blue */
+      border-radius: 10%;
+    }
+
+    #exitButton {
+      background-color: #FF8C00; /* Dark Orange */
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #thankYouMessage {
+      font-size: 24px;
+      margin-top: 20px;
+      color: #2E8B57; /* Sea Green */
+    }
+
+    #feedbackForm {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #feedbackInput {
+      width: 300px;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    #submitFeedbackButton {
+      background-color: #4CAF50; /* Green */
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Color Code Game</h1>
+<form action="colorcode.jsp" id="levelForm">
+  <span id="labelLevel">Select Level</span>
+  <select name="level" form="levelForm">
+    <option value="1">First</option>
+    <option value="2">Second</option>
+    <option value="3">Third</option>
+    <option value="4">Fourth</option>
+    <option value="5">Fifth</option>
+    <option value="6">Sixth</option>
+    <option value="7">Seventh</option>
+  </select>
+
+  <input type="submit" class="blue" value="Start Game"/>
+</form>
+
+<!-- Exit button -->
+<button id="exitButton" onclick="showFeedbackForm()">Exit</button>
+
+<!-- Thank You message -->
+<div id="thankYouMessage"></div>
+
+<!-- Feedback form -->
+<div id="feedbackForm">
+  <textarea id="feedbackInput" placeholder="Enter your feedback"></textarea><br>
+  <button id="submitFeedbackButton" onclick="submitFeedback()">Submit Feedback</button>
+</div>
+
+<script>
+  function showFeedbackForm() {
+    document.getElementById('thankYouMessage').innerHTML = 'Thank you for playing our game! Have a nice day.';
+    document.getElementById('feedbackForm').style.display = 'block';
+  }
+
+  function submitFeedback() {
+    var feedback = document.getElementById('feedbackInput').value;
+    
+    // You should replace 'FeedbackServlet' with your actual servlet URL
+    var servletURL = 'FeedbackServlet'; 
+ document.getElementById('thankYouMessage').innerHTML = 'submitted successfully.';
+    // Assuming you are using XMLHttpRequest to send data to the servlet
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', servletURL, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          console.log('Feedback submitted successfully.');
+          // Optionally, you can hide the feedback form or show a confirmation message here
+        } else {
+          console.error('Error submitting feedback. Status: ' + xhr.status);
+          // Optionally, display an error message to the user
+        }
+      }
+    };
+    xhr.send('feedback=' + encodeURIComponent(feedback));
+  }
+</script>
+
+</body>
+</html>
